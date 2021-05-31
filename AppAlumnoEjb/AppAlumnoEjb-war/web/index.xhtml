@@ -2,15 +2,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Este es un boton de primefaces
         <h:form>
-            <p:commandButton value="Hola!!!"/>
+            <h1><h:outputText value="Alumnos Registrados"/></h1>
+            <h:link value="Nuevo Alumno" outcome="add"/>
+            <p:dataTable value="#{alumnoController.listaTodosAlumnos()}" var="item"
+                         paginator="true" paginatorPosition="top" rows="10"
+                         emptyMessage="No hay datos de alumnos">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idalumno}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="NOMBRE DEL ALUMNO"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombres} #{item.apellidos}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="DIRECCION"/>
+                    </f:facet>
+                    <h:outputText value="#{item.direccion}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="TELEDONO"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="OPCIONES"/>
+                    </f:facet>
+                    <h:commandLink value="Edit" action="#{alumnoController.prepareEditAlumno(item)}"/>
+                     | 
+                     <h:commandLink value="Delete" action="#{alumnoController.deleteAlumno(item)}"
+                                   onclick="return confirm('Esta seguro?')"/>
+                </p:column>
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>
+
+
+
+
+
+
+
 

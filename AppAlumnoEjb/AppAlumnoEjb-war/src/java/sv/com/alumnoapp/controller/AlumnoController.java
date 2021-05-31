@@ -30,6 +30,7 @@ public class AlumnoController implements Serializable {
      * Creates a new instance of AlumnoController
      */
     public AlumnoController() {
+        this.alumno = new Alumno();
     }
     
     public List<Alumno> listaTodosAlumnos(){
@@ -44,7 +45,7 @@ public class AlumnoController implements Serializable {
         this.alumno = alumno;
     }
     
-    public String addAlumno(Alumno alumno){
+    public String addAlumno(){
         alumnoFacade.create(alumno);
         this.alumno = new Alumno();
         return "index";
@@ -61,7 +62,7 @@ public class AlumnoController implements Serializable {
         return "index";
     }
     
-    public void deleteALumno(Alumno a){
+    public void deleteAlumno(Alumno a){
         this.alumnoFacade.remove(a);
     }
 }
